@@ -1,0 +1,17 @@
+spring:
+  redis:
+    cluster:
+      nodes: "10.205.204.68:6379,10.205.208.103:6379,10.205.215.114:6379,10.205.215.115:6379,10.205.215.116:6379,10.205.215.117:6379"
+      password: "0uACbxH8Er"
+      max-redirects: 3
+      connectionTimeout: 10s
+      soTimeout: 10s
+    lettuce:
+      pool:
+        min-idle: 1
+        max-idle: 50
+        max-active: 50
+        max-wait: 5s
+        time-between-eviction-runs: 60s
+        testOnBorrow: true
+

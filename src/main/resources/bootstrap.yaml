@@ -1,0 +1,40 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gatewayserver
+  config:
+    import:
+      nacos: ${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+  cloud:
+    nacos:
+      config:
+        server-addr: 10.195.24.136:8848
+        namespace: c2f3c473-7ffb-4f4e-ba6b-d30f285ab387
+        username: nacos
+        password: nacos_group1
+        group: DEFAULT_GROUP
+        file-extension: yaml
+      discovery:
+        server-addr: 10.195.24.136:8848
+        namespace: c2f3c473-7ffb-4f4e-ba6b-d30f285ab387
+        username: nacos
+        password: nacos_group1
+        group: DEFAULT_GROUP
+    gateway:
+      httpclient:
+        pool:
+          max-idle-time: 3000
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

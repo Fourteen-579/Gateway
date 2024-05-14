@@ -1,0 +1,13 @@
+stages:          # List of stages for jobs, and their order of execution
+  - deploy
+
+deploy-job:       # This job runs in the build stage, which runs first.
+  stage: deploy
+  script:
+    - export JAVA_HOME=/home/gitlab-runner/jdk17
+    - chmod +x ./mvnw
+    - ./mvnw clean 
+    - ./mvnw install -Dmaven.test.skip=true
+    - cd target
+    - sudo cp gateway-server.jar /vdb/gateway-server/
+    - sudo /vdb/gateway-server/start.sh
